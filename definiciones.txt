@@ -1,0 +1,29 @@
+#1 BISECCIÓN
+Es un algoritmo de búsqueda de raíces que trabaja dividiendo el intervalo a la mitad y seleccionando el subintervalo que tiene la raíz.
+
+#2 FALSA POSICIÓN
+Como en el método de bisección, se parte de un intervalo inicial [a0,b0] con f(a0) y f(b0) de signos opuestos, lo que garantiza que en su interior hay al menos una raíz. El algoritmo va obteniendo sucesivamente en cada paso un intervalo más pequeño [ak, bk] que sigue incluyendo una raíz de la función f.
+
+#3 MONTANTE
+El método consiste en ir "pivoteando" en la diagonal principal. Se comienza en el extremo superior izquierdo, el renglón donde esta el pivote va a ser el renglón base de todo el sistema y la columna donde esta el pivote va a ser la columna base. Con respecto a ese renglón y esa columna, donde está el pivote, se forman determinantes de dos por dos, y siempre se trabaja con números enteros, si apareciera alguna fracción hay un error.
+   
+#4 JACOBI
+Es un método iterativo, usado para resolver sistemas de ecuaciones lineales del tipo Ax=b. El algoritmo toma su nombre del matemático alemán Carl Gustav Jakob Jacobi. Consiste en usar fórmulas como iteración de punto fijo.
+
+#5 GAUSSJORDAN
+Un sistema de ecuaciones se resuelve por este método cuando se obtienen sus soluciones mediante la reducción del sistema dado a otro equivalente en el que cada ecuación tiene una incógnita menos que la anterior. Este método transforma la matriz de coeficientes en una matriz triangular superior. Después, este método continúa el proceso de transformación hasta obtener una matriz diagonal.
+
+#6 NEWTONRAPHSON
+Es un método abierto, en el sentido de que su convergencia global no está garantizada. La única manera de alcanzar la convergencia es seleccionar un valor inicial lo suficientemente cercano a la raíz buscada.
+
+#7 PUNTO FIJO
+El procedimiento empieza con una estimación o conjetura inicial de x, que es mejorada por iteración hasta alcanzar la convergencia. Para que converja, la derivada (dg/dx) debe ser menor que 1 en magnitud (al menos para los valores x que se encuentran durante las iteraciones). La convergencia será establecida mediante el requisito de que el cambio en x de una iteración a la siguiente no sea mayor en magnitud que alguna pequeña cantidad ε.
+
+#8 SECANTE
+Es una variación del método de Newton-Raphson donde en vez de calcular la derivada de la función en el punto de estudio, teniendo en mente la definición de derivada, se aproxima la pendiente a la recta que une la función evaluada en el punto de estudio y en el punto de la iteración anterior.
+
+#9 GRAFICO
+Este método para resolver este tipo de sistemas consiste, por tanto, en representar en unos ejes cartesianos, o sistema de coordenadas, ambas rectas y comprobar si se cortan y, si es así, dónde.
+
+#10 HACIA ADELANTE
+El polinomio de interpolación de Newton de forma _____ ________ se puede determinar asumiendo la siguiente forma: Pn(x) = c0 + c1 (x − x0 ) + c2 (x − x0 )(x − x1 ) + · · · + cn (x − x0 ) · · · (x − xn−1 ) donde los coeficientes ck , k = 0, . . . , n se determinan al cumplir con las restricciones Pn (xi ) = yi , i = 0, . . . , n.
