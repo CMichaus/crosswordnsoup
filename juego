@@ -2,6 +2,7 @@ package formularios;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 public class Juego extends javax.swing.JFrame {
@@ -180,77 +181,115 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JLabel lblTPuntaje;
     private javax.swing.JLabel lblTRestante;
     private int bandera = 0;
-    private int found=0;
+    private int found = 0;
+    private int fin = 0, enconta, contgra = 0, contbis = 0, contpunt = 0;
+   
     // End of variables declaration//GEN-END:variables
 
     static int c = 0;
 
     private void comprobar() {
-                String vPalabra;
-                String Palabra1 = "grafico";
-                String Palabra2 = "bisectriz";
-                String Palabra3 = "puntofijo";
-                vPalabra = jTextField1.getText();
-                System.out.println("Palabra:" + vPalabra);
-
-                if (vPalabra.equals(Palabra1)) {
-                    check(1); 
-
-                    bandera = 1;
-                    System.out.println(bandera);
-                } else if (vPalabra.equals(Palabra2)) {
-                    check(2);
-
-                    bandera = 2;
-                    System.out.println(bandera);
-
-                } else if (vPalabra.equals(Palabra3)) {
-                    check(3);
-                    bandera = 3;
-                    System.out.println(bandera);
-                } else if (found != 1 && found != 2 && found != 3) {
-                    found = 4;
-                    //JOptionPane.showMessageDialog(null, "Palabra Incorrecta");
-                }
-
-            }
-
+        String vPalabraX;
+        String Palabra1 = "grafico";
+        String Palabra2 = "bisectriz";
+        String Palabra3 = "puntofijo";
         
-    
+        vPalabraX = jTextField1.getText();
+        String vPalabra = vPalabraX.toLowerCase();
+        System.out.println("Palabra:" + vPalabra);
+
+        if (vPalabra.equals(Palabra1)) {
+            check(1);
+
+            bandera = 1;
+            System.out.println(bandera);
+        } else if (vPalabra.equals(Palabra2)) {
+            check(2);
+
+            bandera = 2;
+            System.out.println(bandera);
+
+        } else if (vPalabra.equals(Palabra3)) {
+            check(3);
+            bandera = 3;
+            System.out.println(bandera);
+        } else {
+            check(4);
+            System.out.println("mal");
+            //JOptionPane.showMessageDialog(null, "Palabra Incorrecta");
+        }
+
+    }
 
     private void check(int found) {
         switch (found) {
             case 1:
-                JOptionPane.showMessageDialog(null, "Palabra correcta");
-
-                lblCrucigrama1.setVisible(false);
-                lblCrucigrama1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/grafico.png")));
-                lblCrucigrama1.setVisible(true);
-                found = 0;
+               // verifFin("grafico");
+                // JOptionPane.showMessageDialog(null, "Palabra correcta");
+                contgra+=1;
+                System.out.println("contgra va en:"+contgra);
+                if (contgra > 1) {
+                    JOptionPane.showMessageDialog(null, "La palabra grafico ya habia sido encontrada");
+                    jTextField1.setText("");
+                } else {
+                    lblCrucigrama1.setVisible(false);
+                    lblCrucigrama1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/grafico.png")));
+                    lblCrucigrama1.setVisible(true);
+                    fin+=1;
+                    jTextField1.setText("");
+                    System.out.println("el contador fin va en:" + fin);
+                    verfin(fin);
+                }
                 break;
             case 2:
-                JOptionPane.showMessageDialog(null, "Palabra correcta");
-
+                //verifFin("bisectriz");
+                // JOptionPane.showMessageDialog(null, "Palabra correcta");
+                contbis+=1;
+                System.out.println("contbis va en:"+contbis);
+                if(contbis>1){
+                    JOptionPane.showMessageDialog(null, "La palabra bisectriz ya habia sido encontrada");
+                    jTextField1.setText("");
+                } else { 
+                
                 lblCrucigrama1.setVisible(false);
                 lblCrucigrama1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bisectriz.png")));
                 lblCrucigrama1.setVisible(true);
                 jTextField1.setText("");
-                found = 0;
+                fin+=1;
+                System.out.println("el contador fin va en:" + fin);
+                verfin(fin);
+                }
                 break;
             case 3:
-                JOptionPane.showMessageDialog(null, "Palabra correcta");
-
+                //verifFin("puntofijo");
+                // JOptionPane.showMessageDialog(null, "Palabra correcta");
+                contpunt+=1;
+                System.out.println("contpunt va en:"+contpunt);
+                if(contpunt>1){
+                     JOptionPane.showMessageDialog(null, "La palabra puntofijo ya habia sido encontrada");
+                     jTextField1.setText("");
+                } else {
+               
                 lblCrucigrama1.setVisible(false);
                 lblCrucigrama1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/puntofijo.png")));
                 lblCrucigrama1.setVisible(true);
                 jTextField1.setText("");
-                found = 0;
+               jTextField1.setText("");
+
+                fin += 1;
+                System.out.println("el contador fin va en:" + fin);
+                verfin(fin);
+                }
                 break;
             case 4:
-                JOptionPane.showMessageDialog(null, "Palabra incorrecta");
+                //JOptionPane.showMessageDialog(null, "Palabra incorrecta");
                 jTextField1.setText("");
                 found = 0;
+                System.out.println("palabra no encontrada");
+                jTextField1.setText("");
+                JOptionPane.showMessageDialog(null, "Palabra incorrecta");
             default:
+
                 System.out.println("Error en Switch");
                 found = 0;
 
@@ -258,9 +297,17 @@ public class Juego extends javax.swing.JFrame {
         }
     }
     ////////////////////CONTADOR//////////////////////////////////
-    
-    
 
+public void verfin(int cont){
+    if(cont>=3){
+    JOptionPane.showMessageDialog(null, "FELICIDADES ENCONTRASTE TODAS LAS PALABRAS");
+    this.setVisible(false);
+    
+    Records rec=new Records();//Aqui, una vez terminado el juego, manda a records para que el jugador vea su record
+    rec.setVisible(true);     //pero pudiera ser cambiado por inicio de ser necesario
+
+}
+}
     public void relog() {
         for (c = 60; c <= 0; c--) {
             retraso();
