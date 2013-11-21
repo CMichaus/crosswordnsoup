@@ -1,0 +1,278 @@
+package formularios;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
+public class Juego extends javax.swing.JFrame {
+
+    public Juego() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jFrame1 = new javax.swing.JFrame();
+        jPanel1 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        btnComprobar = new javax.swing.JButton();
+        lblPalabraencontrada = new javax.swing.JLabel();
+        lblCrucigrama1 = new javax.swing.JLabel();
+        lblTPuntaje = new javax.swing.JLabel();
+        lblPuntaje = new javax.swing.JLabel();
+        lblTRestante = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblPuntos = new javax.swing.JLabel();
+        displayReloj = new javax.swing.JTextField();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+                jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+                jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnComprobar.setText("Comprobar");
+        btnComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprobarActionPerformed(evt);
+            }
+        });
+
+        lblPalabraencontrada.setText("Palabra encontrada:");
+
+        lblCrucigrama1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/crucigrama1.png"))); // NOI18N
+
+        lblTPuntaje.setText("Puntaje:");
+
+        lblPuntaje.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblPuntaje.setText("0");
+
+        lblTRestante.setText("Tiempo Restante:");
+
+        jLabel1.setText("Segundos");
+
+        lblPuntos.setText("Puntos");
+
+        displayReloj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayRelojActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnComprobar)
+                                        .addGap(54, 54, 54))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblTPuntaje)
+                                                .addComponent(lblTRestante)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(lblPuntos)
+                                                        .addComponent(lblPalabraencontrada))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(10, 10, 10)
+                                                        .addComponent(lblPuntaje))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(3, 3, 3)
+                                                        .addComponent(displayReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(jLabel1)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblCrucigrama1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(24, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblTPuntaje)
+                                        .addGap(11, 11, 11)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(lblPuntaje)
+                                                .addComponent(lblPuntos))
+                                        .addGap(32, 32, 32)
+                                        .addComponent(lblTRestante)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(displayReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(237, 237, 237))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblCrucigrama1)
+                                        .addGap(18, 18, 18)))
+                        .addComponent(lblPalabraencontrada)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnComprobar))
+                        .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprobarActionPerformed
+        comprobar();
+    }//GEN-LAST:event_btnComprobarActionPerformed
+
+    private void displayRelojActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayRelojActionPerformed
+        relog();
+    }//GEN-LAST:event_displayRelojActionPerformed
+
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Juego().setVisible(true);
+            }
+
+        });
+    }
+    private javax.swing.JLabel lblCrucigrama3;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnComprobar;
+    private javax.swing.JTextField displayReloj;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblCrucigrama1;
+    private javax.swing.JLabel lblPalabraencontrada;
+    private javax.swing.JLabel lblPuntaje;
+    private javax.swing.JLabel lblPuntos;
+    private javax.swing.JLabel lblTPuntaje;
+    private javax.swing.JLabel lblTRestante;
+    private int bandera = 0;
+    private int found=0;
+    // End of variables declaration//GEN-END:variables
+
+    static int c = 0;
+
+    private void comprobar() {
+                String vPalabra;
+                String Palabra1 = "grafico";
+                String Palabra2 = "bisectriz";
+                String Palabra3 = "puntofijo";
+                vPalabra = jTextField1.getText();
+                System.out.println("Palabra:" + vPalabra);
+
+                if (vPalabra.equals(Palabra1)) {
+                    check(1); 
+
+                    bandera = 1;
+                    System.out.println(bandera);
+                } else if (vPalabra.equals(Palabra2)) {
+                    check(2);
+
+                    bandera = 2;
+                    System.out.println(bandera);
+
+                } else if (vPalabra.equals(Palabra3)) {
+                    check(3);
+                    bandera = 3;
+                    System.out.println(bandera);
+                } else if (found != 1 && found != 2 && found != 3) {
+                    found = 4;
+                    //JOptionPane.showMessageDialog(null, "Palabra Incorrecta");
+                }
+
+            }
+
+        
+    
+
+    private void check(int found) {
+        switch (found) {
+            case 1:
+                JOptionPane.showMessageDialog(null, "Palabra correcta");
+
+                lblCrucigrama1.setVisible(false);
+                lblCrucigrama1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/grafico.png")));
+                lblCrucigrama1.setVisible(true);
+                found = 0;
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "Palabra correcta");
+
+                lblCrucigrama1.setVisible(false);
+                lblCrucigrama1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bisectriz.png")));
+                lblCrucigrama1.setVisible(true);
+                jTextField1.setText("");
+                found = 0;
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null, "Palabra correcta");
+
+                lblCrucigrama1.setVisible(false);
+                lblCrucigrama1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/puntofijo.png")));
+                lblCrucigrama1.setVisible(true);
+                jTextField1.setText("");
+                found = 0;
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(null, "Palabra incorrecta");
+                jTextField1.setText("");
+                found = 0;
+            default:
+                System.out.println("Error en Switch");
+                found = 0;
+
+                break;
+        }
+    }
+    ////////////////////CONTADOR//////////////////////////////////
+    
+    
+
+    public void relog() {
+        for (c = 60; c <= 0; c--) {
+            retraso();
+            displayReloj.setText("" + c);
+        }
+    }
+
+    private void retraso() {                 //retrasa el proceso
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            return;
+        }
+    }
+}
