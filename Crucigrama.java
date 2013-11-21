@@ -4,7 +4,7 @@ import javax.swing.*;
  
 public class Crucigrama extends JFrame {
     private LoadImage crucigrama;
-    private JLabel lblpregunta, score, tiempoRestante;
+    private JLabel lblpregunta, lblIntenta, score, tiempoRestante;
     private JTextArea pregunta, respuesta;
     private JButton comprobarRespuesta, salir;
     private String numero_preguntas[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
@@ -19,7 +19,7 @@ public class Crucigrama extends JFrame {
 				  "Un sistema de ecuaciones se resuelve por este método cuando se obtienen sus \nsoluciones mediante la reducción del sistema dado a otro equivalente en el que \ncada ecuación tiene una incógnita menos que la anterior. Este método transforma \nla matriz de coeficientes en una matriz triangular superior. Después, este método \ncontinúa el proceso de transformación hasta obtener una matriz diagonal.", 
 				  "Este método para resolver este tipo de sistemas consiste, por tanto, en representar \nen unos ejes cartesianos, o sistema de coordenadas, ambas rectas y comprobar si \nse cortan y, si es así, dónde."};    
 
-    private JComboBox<String> listaPreguntas;
+    private JComboBox listaPreguntas;
 
     public Crucigrama() {
 	Container cp = this.getContentPane();
@@ -30,69 +30,63 @@ public class Crucigrama extends JFrame {
 	constraints.gridy = 0;
 	constraints.gridwidth = 1;
 	constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.WEST;
 	lblpregunta = new JLabel("Selecciona la Pregunta");
 	lblpregunta.setFont(new Font("Serif", Font.PLAIN, 25));
 	cp.add(lblpregunta, constraints);
 	
 	
-	listaPreguntas = new JComboBox<String>(numero_preguntas);
+	listaPreguntas = new JComboBox(numero_preguntas);
 	listaPreguntas.setSelectedIndex(0);
 
 	listaPreguntas.addActionListener(new ActionListener() {
 		@Override
 		    public void actionPerformed(ActionEvent e) {
-		    JComboBox<Object> cb = (JComboBox<Object>)e.getSource();
+		    JComboBox cb = (JComboBox)e.getSource();
 		    int pregunta = cb.getSelectedIndex();
 		    updateQuestion(pregunta);
 		}
 	    });
-	constraints.gridx = 0;
-	constraints.gridy = 1;
+	constraints.gridx = 1;
+	constraints.gridy = 0;
 	constraints.gridwidth = 1;
 	constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.WEST;
 	cp.add(listaPreguntas, constraints);
 
 	constraints.gridx = 0;
-	constraints.gridy = 2;
-	constraints.gridwidth = 1;
+	constraints.gridy = 1;
+	constraints.gridwidth = 2;
 	constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.WEST;
 	cp.add(new JLabel("Pregunta"), constraints);
 	
 	constraints.gridx = 0;
-        constraints.gridy = 3;
-        constraints.gridwidth = 1;
+        constraints.gridy = 2;
+        constraints.gridwidth = 2;
         constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.CENTER;
+	constraints.fill = GridBagConstraints.BOTH;
 	pregunta = new JTextArea(preguntas[0], 5, 30);
 	pregunta.setEditable(false);
 	cp.add(pregunta, constraints);
 	
 	constraints.gridx = 0;
-        constraints.gridy = 4;
-        constraints.gridwidth = 1;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
         constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.WEST;
 	cp.add(new JLabel("Respuesta: "), constraints);
 
 	constraints.gridx = 0;
-        constraints.gridy = 5;
-        constraints.gridwidth = 1;
+        constraints.gridy = 4;
+        constraints.gridwidth = 2;
         constraints.gridheight = 1;
-	respuesta = new JTextArea("Respuesta", 5, 30);
+	constraints.anchor = GridBagConstraints.NORTH;
+	constraints.fill = GridBagConstraints.NONE;
+	respuesta = new JTextArea(5, 30);
 	cp.add(respuesta, constraints);
-	
-       	tiempoRestante = new JLabel("Tiempo Restante");
-	constraints.gridx = 1;
-        constraints.gridy = 0;
-        constraints.gridwidth = 3;
-        constraints.gridheight = 1;
-	cp.add(tiempoRestante, constraints);
-	
-	crucigrama = new LoadImage("imagenes/primero.png");
-	constraints.gridx = 1;
-        constraints.gridy = 1;
-        constraints.gridwidth = 3;
-        constraints.gridheight = 4;
-	cp.add(crucigrama, constraints);
-	
+
 	comprobarRespuesta = new JButton("Comprobar Respuesta");
 	comprobarRespuesta.addActionListener(new ActionListener() {
 		@Override
@@ -100,25 +94,49 @@ public class Crucigrama extends JFrame {
 		    
 		}
 	    });
-
-	constraints.gridx = 1;
+	
+	constraints.gridx = 0;
         constraints.gridy = 5;
-        constraints.gridwidth = 1;
+        constraints.gridwidth = 2;
         constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.CENTER;
+	constraints.fill = GridBagConstraints.NONE;
 	cp.add(comprobarRespuesta, constraints);
 	
-	score = new JLabel("Score: ");
+	tiempoRestante = new JLabel("Tiempo Restante");
 	constraints.gridx = 2;
-        constraints.gridy = 5;
-        constraints.gridwidth = 1;
+        constraints.gridy = 0;
+        constraints.gridwidth = 2;
         constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.WEST;
+	constraints.fill = GridBagConstraints.NONE;
+	cp.add(tiempoRestante, constraints);
+	
+	score = new JLabel("Score: ");
+	constraints.gridx = 4;
+        constraints.gridy = 0;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.CENTER;
+	constraints.fill = GridBagConstraints.NONE;
 	cp.add(score, constraints);
 
+	crucigrama = new LoadImage("imagenes/primero.png");
+	constraints.gridx = 2;
+        constraints.gridy = 1;
+        constraints.gridwidth = 4;
+        constraints.gridheight = 5;
+	constraints.anchor = GridBagConstraints.WEST;
+	constraints.fill = GridBagConstraints.NONE;
+	cp.add(crucigrama, constraints);
+	
 	salir = new JButton("Salir");
 	constraints.gridx = 3;
         constraints.gridy = 5;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.SOUTHEAST;
+	constraints.fill = GridBagConstraints.NONE;
 	cp.add(salir, constraints);
 	
 	
