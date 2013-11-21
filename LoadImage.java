@@ -16,12 +16,12 @@ public class LoadImage extends Component {
         g.drawImage(img, 0, 0, null);
 	paintBiseccion(g);
 	paintFalsaPosicion(g);
-	//paintMontante(g);
+	paintMontante(g);
 	paintJacobi(g);
 	paintGaussJordan(g);
-	//paintSecante(g);
+	paintSecante(g);
 	paintNewtonRaphson(g);
-	//paintHaciaAdelante(g);
+	paintHaciaAdelante(g);
 	paintGrafico(g);
 	paintPuntoFijo(g);
     }

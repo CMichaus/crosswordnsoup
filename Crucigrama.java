@@ -66,7 +66,7 @@ public class Crucigrama extends JFrame {
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
 	constraints.anchor = GridBagConstraints.CENTER;
-	constraints.fill = GridBagConstraints.BOTH;
+	constraints.fill = GridBagConstraints.NONE;
 	pregunta = new JTextArea(preguntas[0], 5, 30);
 	pregunta.setEditable(false);
 	cp.add(pregunta, constraints);
@@ -75,7 +75,8 @@ public class Crucigrama extends JFrame {
         constraints.gridy = 3;
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
-	constraints.anchor = GridBagConstraints.WEST;
+	constraints.anchor = GridBagConstraints.SOUTHWEST;
+	constraints.weighty = 1.0;
 	cp.add(new JLabel("Respuesta: "), constraints);
 
 	constraints.gridx = 0;
@@ -85,8 +86,10 @@ public class Crucigrama extends JFrame {
 	constraints.anchor = GridBagConstraints.NORTH;
 	constraints.fill = GridBagConstraints.NONE;
 	respuesta = new JTextArea(5, 30);
+	constraints.weightx = 0.0;
 	cp.add(respuesta, constraints);
-
+	
+	constraints.weightx = 0.0;
 	comprobarRespuesta = new JButton("Comprobar Respuesta");
 	comprobarRespuesta.addActionListener(new ActionListener() {
 		@Override
@@ -131,11 +134,17 @@ public class Crucigrama extends JFrame {
 	cp.add(crucigrama, constraints);
 	
 	salir = new JButton("Salir");
-	constraints.gridx = 3;
-        constraints.gridy = 5;
+	salir.addActionListener(new ActionListener() {
+		@Override
+		    public void actionPerformed(ActionEvent e) {
+		    System.exit(0);
+		}
+	    });
+	constraints.gridx = 5;
+        constraints.gridy = 6;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-	constraints.anchor = GridBagConstraints.SOUTHEAST;
+	constraints.anchor = GridBagConstraints.CENTER;
 	constraints.fill = GridBagConstraints.NONE;
 	cp.add(salir, constraints);
 	
