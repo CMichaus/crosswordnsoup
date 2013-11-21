@@ -1,4 +1,4 @@
-#1 BISECCIÓN
+import#1 BISECCIÓN
 Es un algoritmo de búsqueda de raíces que trabaja dividiendo el intervalo a la mitad y seleccionando el subintervalo que tiene la raíz.
 
 #2 FALSA POSICIÓN

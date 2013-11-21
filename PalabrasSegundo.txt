@@ -1,0 +1,7 @@
+EulerModificado
+Lagrange
+haciaatras
+truncamiento
+redondeo
+interpolacionLineal
+

@@ -5,7 +5,8 @@ import javax.swing.*;
 public class Crucigrama extends JFrame {
     private LoadImage crucigrama;
     private JLabel lblpregunta, lblIntenta, score, tiempoRestante;
-    private JTextArea pregunta, respuesta;
+    private JTextArea areaPregunta;
+    private JTextField txtRespuesta;
     private JButton comprobarRespuesta, salir;
     private String numero_preguntas[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     private String preguntas[] = {"Es un algoritmo de búsqueda de raíces que trabaja dividiendo el intervalo a la mitad \ny seleccionando el subintervalo que tiene la raíz.", 
@@ -18,7 +19,7 @@ public class Crucigrama extends JFrame {
 				  "El método consiste en ir -pivoteando- en la diagonal principal. Se comienza en \nel extremo superior izquierdo, el renglón donde esta el pivote va a ser el \nrenglón base de todo el sistema y la columna donde esta el pivote va a ser \nla columna base. Con respecto a ese renglón y esa columna, donde está el \npivote, se forman determinantes de dos por dos, y siempre se trabaja con \nnúmeros enteros, si apareciera alguna fracción hay un error.", 
 				  "Un sistema de ecuaciones se resuelve por este método cuando se obtienen sus \nsoluciones mediante la reducción del sistema dado a otro equivalente en el que \ncada ecuación tiene una incógnita menos que la anterior. Este método transforma \nla matriz de coeficientes en una matriz triangular superior. Después, este método \ncontinúa el proceso de transformación hasta obtener una matriz diagonal.", 
 				  "Este método para resolver este tipo de sistemas consiste, por tanto, en representar \nen unos ejes cartesianos, o sistema de coordenadas, ambas rectas y comprobar si \nse cortan y, si es así, dónde."};    
-
+    private boolean stop = false;
     private JComboBox listaPreguntas;
 
     public Crucigrama() {
@@ -38,7 +39,7 @@ public class Crucigrama extends JFrame {
 	
 	listaPreguntas = new JComboBox(numero_preguntas);
 	listaPreguntas.setSelectedIndex(0);
-
+	
 	listaPreguntas.addActionListener(new ActionListener() {
 		@Override
 		    public void actionPerformed(ActionEvent e) {
@@ -67,9 +68,9 @@ public class Crucigrama extends JFrame {
         constraints.gridheight = 1;
 	constraints.anchor = GridBagConstraints.CENTER;
 	constraints.fill = GridBagConstraints.NONE;
-	pregunta = new JTextArea(preguntas[0], 5, 30);
-	pregunta.setEditable(false);
-	cp.add(pregunta, constraints);
+	areaPregunta = new JTextArea(preguntas[0], 5, 30);
+	areaPregunta.setMaximumSize(new Dimension(5, 30));
+	cp.add(areaPregunta, constraints);
 	
 	constraints.gridx = 0;
         constraints.gridy = 3;
@@ -78,52 +79,20 @@ public class Crucigrama extends JFrame {
 	constraints.anchor = GridBagConstraints.SOUTHWEST;
 	constraints.weighty = 1.0;
 	cp.add(new JLabel("Respuesta: "), constraints);
-
+	
+	txtRespuesta = new JTextField(30);
 	constraints.gridx = 0;
         constraints.gridy = 4;
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
 	constraints.anchor = GridBagConstraints.NORTH;
 	constraints.fill = GridBagConstraints.NONE;
-	respuesta = new JTextArea(5, 30);
 	constraints.weightx = 0.0;
-	cp.add(respuesta, constraints);
+	cp.add(txtRespuesta, constraints);
 	
 	constraints.weightx = 0.0;
-	comprobarRespuesta = new JButton("Comprobar Respuesta");
-	comprobarRespuesta.addActionListener(new ActionListener() {
-		@Override
-		    public void actionPerformed(ActionEvent e) {
-		    
-		}
-	    });
 	
-	constraints.gridx = 0;
-        constraints.gridy = 5;
-        constraints.gridwidth = 2;
-        constraints.gridheight = 1;
-	constraints.anchor = GridBagConstraints.CENTER;
-	constraints.fill = GridBagConstraints.NONE;
-	cp.add(comprobarRespuesta, constraints);
-	
-	tiempoRestante = new JLabel("Tiempo Restante");
-	constraints.gridx = 2;
-        constraints.gridy = 0;
-        constraints.gridwidth = 2;
-        constraints.gridheight = 1;
-	constraints.anchor = GridBagConstraints.WEST;
-	constraints.fill = GridBagConstraints.NONE;
-	cp.add(tiempoRestante, constraints);
-	
-	score = new JLabel("Score: ");
-	constraints.gridx = 4;
-        constraints.gridy = 0;
-        constraints.gridwidth = 2;
-        constraints.gridheight = 1;
-	constraints.anchor = GridBagConstraints.CENTER;
-	constraints.fill = GridBagConstraints.NONE;
-	cp.add(score, constraints);
-
+		
 	crucigrama = new LoadImage("imagenes/primero.png");
 	constraints.gridx = 2;
         constraints.gridy = 1;
@@ -133,6 +102,59 @@ public class Crucigrama extends JFrame {
 	constraints.fill = GridBagConstraints.NONE;
 	cp.add(crucigrama, constraints);
 	
+	comprobarRespuesta = new JButton("Comprobar Respuesta");
+	constraints.gridx = 0;
+        constraints.gridy = 5;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.CENTER;
+	constraints.fill = GridBagConstraints.NONE;
+	cp.add(comprobarRespuesta, constraints);
+	comprobarRespuesta.addActionListener(new ActionListener() {
+		@Override
+		    public void actionPerformed(ActionEvent e) {
+		    String respuesta = txtRespuesta.getText().toLowerCase();
+		    crucigrama.checkAnswer(respuesta);
+		    crucigrama.paintComponent(crucigrama.getGraphics());
+		    crucigrama.getGraphics().dispose();
+		}
+	    });
+	
+	tiempoRestante = new JLabel("Tiempo Restante");
+	constraints.gridx = 2;
+        constraints.gridy = 0;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.WEST;
+	constraints.fill = GridBagConstraints.NONE;
+	cp.add(tiempoRestante, constraints);
+
+	Thread t = new Thread() {
+		@Override
+		    public void run() {  
+		    for (int i = 0; i < 100; ++i) {
+			tiempoRestante.setText("Tiempo Restante: "+i);
+			
+			try {
+			    sleep(1000);  
+			} catch (InterruptedException ex) {}
+		    }
+		}
+	    };
+	t.start();
+
+	
+	score = new JLabel("Score: ");
+	constraints.gridx = 4;
+        constraints.gridy = 0;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+	constraints.anchor = GridBagConstraints.CENTER;
+	constraints.fill = GridBagConstraints.NONE;
+	cp.add(score, constraints);
+	
+
+		
 	salir = new JButton("Salir");
 	salir.addActionListener(new ActionListener() {
 		@Override
@@ -160,7 +182,7 @@ public class Crucigrama extends JFrame {
  
     
     protected void updateQuestion(int preg) {
-        pregunta.setText(preguntas[preg]);
+        areaPregunta.setText(preguntas[preg]);
     }
 
 
@@ -169,7 +191,7 @@ public class Crucigrama extends JFrame {
 	// Run GUI codes in Event-Dispatching thread for thread-safety
 	SwingUtilities.invokeLater(new Runnable() {
 		@Override
-		public void run() {
+		    public void run() {
 		    new Crucigrama();  // Let the constructor do the job
 		}
 	    });

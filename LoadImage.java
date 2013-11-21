@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
@@ -8,25 +9,89 @@ import javax.swing.*;
 /**
  * This class demonstrates how to load an Image from an external file
  */
-public class LoadImage extends Component {
-          
-    BufferedImage img;
+public class LoadImage extends JPanel {
+    
+    private String[] respuestas = {"biseccion", 
+				   "falsaposicion", 
+				   "montante", 
+				   "jacobi", 
+				   "gaussjordan", 
+				   "newtonraphson", 
+				   "puntofijo", 
+				   "secante", 
+				   "grafico",
+				   "haciaadelante"
+    }; 
 
-    public void paint(Graphics g) {
-        g.drawImage(img, 0, 0, null);
-	paintBiseccion(g);
-	paintFalsaPosicion(g);
-	paintMontante(g);
-	paintJacobi(g);
-	paintGaussJordan(g);
-	paintSecante(g);
-	paintNewtonRaphson(g);
-	paintHaciaAdelante(g);
-	paintGrafico(g);
-	paintPuntoFijo(g);
+    private int respuesta = 0;
+    private BufferedImage img;
+    private ArrayList<Integer> miLista = new ArrayList<Integer>();
+    
+    public void setRespuesta(int respuesta){
+	this.respuesta = respuesta;
     }
+    
+    
+    public void paintWord(Graphics g) {
+	//super.paintComponent(g);
+	
+	int i = 0;
+	while(i < miLista.size()) {
+	    switch(miLista.get(i)) {
+	    case 1:
+		paintBiseccion(g);
+		break;
+	    case 2:
+		paintFalsaPosicion(g);
+		break;
+	    case 3:
+		paintMontante(g);
+		break;
+	    case 4:
+		paintJacobi(g);
+		break;
+	    case 5:
+		paintGaussJordan(g);
+		break;
+	    case 6:
+		paintNewtonRaphson(g);
+		break;
+	    case 7:
+		paintPuntoFijo(g);
+		break;
+	    case 8:
+		paintSecante(g);
+		break;
+	    case 9:    
+		paintGrafico(g);
+		break;
+	    case 10:
+		paintHaciaAdelante(g);
+		break;
+	    }
+	    i++;
+	}
+    }
+    
+    public void checkAnswer(String s) {
+	for (int i = 0; i<respuestas.length; i++) {
+	    if (s.equals(respuestas[i])) {
+		System.out.println("Pues, la tienes bien");
+		miLista.add(i+1);
+		break;
+	    }
+	}
+    } 
+    
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+	g.drawImage(img, 0, 0, null);
+	paintWord(g);
 
-
+	
+    }
+    
+    
     public void paintBiseccion(Graphics g) {
 	g.setFont(new Font("Serif", Font.BOLD, 20));
 	g.drawString("B", 445, 35);
@@ -68,6 +133,7 @@ public class LoadImage extends Component {
     }
 
     public void paintPuntoFijo(Graphics g) {
+	g.setFont(new Font("Serif", Font.BOLD, 20));
 	g.drawString("P", 88, 285);
 	g.drawString("U", 128, 285);
 	g.drawString("N", 160, 285);
@@ -170,6 +236,7 @@ public class LoadImage extends Component {
            img = ImageIO.read(new File(nombre));
        } catch (IOException e) {
        }
+       
        
     }
 
